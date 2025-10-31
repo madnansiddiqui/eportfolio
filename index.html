@@ -610,10 +610,73 @@
   
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
-<script defer>
-document.body.appendChild(document.createElement('div')).setAttribute('id','chatBubbleRoot');
-window.agx = '68f880cb4342f5520eac5464YxE4Wr48wVi4L/47Pvp4Lg==|nHWmDMHptOlyDqeavnviNZQokoFsg4KdKQK3TQBKwfQ=';
+<!-- 💬 START: AgentX Chat Widget -->
+<style>
+  /* --- Base Chat Window (Desktop Default) --- */
+  #chatInlineRoot-ac5464 {
+    width: 450px;
+    height: 700px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease-in-out;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- Fade-in + Slide-up animation when loaded --- */
+  #chatInlineRoot-ac5464.chat-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- Tablet Layout --- */
+  @media (max-width: 1024px) {
+    #chatInlineRoot-ac5464 {
+      width: 380px;
+      height: 600px;
+    }
+  }
+
+  /* --- Mobile Layout --- */
+  @media (max-width: 600px) {
+    #chatInlineRoot-ac5464 {
+      width: 90vw;
+      height: 70vh;
+      bottom: 10px;
+      right: 5%;
+    }
+  }
+
+  /* --- Ensure the chat widget fills container --- */
+  #chatInlineRoot-ac5464 iframe,
+  #chatInlineRoot-ac5464 .agentx-chatbox {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 12px;
+  }
+</style>
+
+<!-- Chat container -->
+<div id="chatInlineRoot-ac5464" width="450" height="700">
+  <script
+    defer
+    src="https://storage.googleapis.com/agentx-cdn-01/agentx-chat.js?agx=68f880cb4342f5520eac5464YxE4Wr48wVi4L%2F47Pvp4Lg%3D%3D%7CnHWmDMHptOlyDqeavnviNZQokoFsg4KdKQK3TQBKwfQ%3D">
+  </script>
+</div>
+
+<!-- Small script to trigger the slide-in effect -->
+<script>
+  window.addEventListener('load', () => {
+    const chatBox = document.getElementById('chatInlineRoot-ac5464');
+    setTimeout(() => {
+      chatBox.classList.add('chat-visible');
+    }, 600); // Adjust delay if needed (milliseconds)
+  });
 </script>
-<script defer src="https://storage.googleapis.com/agentx-cdn-01/agentx-chat.js"></script>
+<!-- 💬 END: AgentX Chat Widget -->
   </body>
 </html>
